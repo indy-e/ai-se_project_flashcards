@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash Cards</title>
+    <meta name="author" content="Indy Ear" />
+    <meta
+      name="keywords"
+      content="study aids, flashcards, learning materials"
+    />
+    <meta name="description" content="Flash cards for studying" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./assets/vendor/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./assets/js/index.js" type = "module"></script>
+  </head>
+  <body class="page">
+    <header class="header">
+      <h1 class="header__title">
+        <a href="#home" class="header__link">Flash Cards</a>
+      </h1>
+      <nav class="nav">
+        <ul class="nav__links">
+          <li><a href="#home" class="nav__link">My Decks</a></li>
+          <li><a href="#about" class="nav__link">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page__main-content">
+      <section id="home" class="decks">
+        <h2 class="decks__title">My Decks</h2>
+        <template id="deck-template">
+          <li class="deck">
+            <a href = "#" class="deck__link"></a>
+            <h3 class="deck__title"></h3>
+            <div class="deck__row">
+              <p class="deck__count"></p>
+              <button
+                class="deck__delete-btn"
+                aria-label="Delete this deck"
+                type="button"
+              >
+                <img src="./assets/images/delete.svg" alt="Delete button" />
+              </button>
+            </div>
+          </li>
+        </template>
+        <div class="wrapping-row">
+          <ul class="decks__list wrapping-row__display-contents">
+          </ul>
+          <button class="decks__new-decks-btn" type="button">+ New Deck</button>
+        </div>
+      </section>
+      <section class="carousel" id="carousel">
+        <h2 class="carousel__title"></h2>
+        <div class="carousel__row">
+          <button
+            class="carousel__btn carousel__btn_type_left carousel__btn_disabled"
+            type="button"
+            aria-label="Go to previous card in deck"
+            disabled
+          >
+            <img src="./assets/images/left.svg" alt="Previous card button" />
+          </button>
+          <div class="carousel__card">
+            <p class="carousel__card-text"></p>
+          </div>
+          <button
+            class="carousel__btn carousel__btn_type_right"
+            type="button"
+            aria-label="Go to next card in deck"
+          >
+            <img src="./assets/images/right.svg" alt="Next card button" />
+          </button>
+        </div>
+        <button
+          class="carousel__btn carousel__btn_type_flip"
+          type="button"
+          aria-label="Flip current card"
+        >
+          <img src="./assets/images/flip.svg" alt="Flip card button" />
+        </button>
+      </section>
+      <section id="not-found" class="not-found">
+        <h2 class="not-found__status-code">404</h2>
+        <p class="not-found__text">Sorry, nothing found!</p>
+      </section>
+    </main>
+    <footer class="footer" id="about">
+      <p class="footer__text">&copy; 2026 Indy Ear</p>
+    </footer>
+  </body>
+</html>
