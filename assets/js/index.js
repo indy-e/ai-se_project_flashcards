@@ -16,21 +16,21 @@ function renderDecksView() {
 
   mainEl.classList.remove("page__main-content_location_carousel");
 
-  const decksList = document.querySelector(".decks__list");
+  const decksList = document.querySelector(".gallery__list");
   decksList.innerHTML = "";
 
   function createDeckEl(item){
     const template = document.querySelector("#deck-template");
     const cloneEl = template.content.querySelector("li").cloneNode(true);
     const colorName = hexToString(item.color);
-    const bemModifier = colorName ? "deck_color_" + colorName : "deck_color_green";
+    const bemModifier = colorName ? "card_color_" + colorName : "card_color_green";
     cloneEl.classList.add(bemModifier);
     cloneEl.dataset.id = item.id;
-    const titleEl = cloneEl.querySelector(".deck__title");
+    const titleEl = cloneEl.querySelector(".card__title");
     titleEl.textContent = item.name;
-    const countEl = cloneEl.querySelector(".deck__count");
+    const countEl = cloneEl.querySelector(".card__count");
     countEl.textContent = item.cards.length + " cards";
-    const deckLinkEl = cloneEl.querySelector(".deck__link");
+    const deckLinkEl = cloneEl.querySelector(".card__link");
     deckLinkEl.href = `#carousel/${item.id}`;
     return cloneEl;
   }
@@ -45,7 +45,7 @@ function renderDecksView() {
   });
 
   decksList.addEventListener("click", (e) => {
-    if (e.target.closest(".deck__delete-btn")) {
+    if (e.target.closest(".card__delete-btn")) {
       const li = e.target.closest("li");
       li.remove();
     }
