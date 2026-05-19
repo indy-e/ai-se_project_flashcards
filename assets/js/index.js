@@ -1,22 +1,39 @@
 import { decks, getDeckByID } from "./decks.js";
 import{ stringToHex, hexToString, removeColorClasses } from "./colorMap.js";
 import { renderCarouselView } from "./carousel.js";
+import { renderDeckViewById } from "./deck-view.js";
 
 const homeSection = document.querySelector("#home");
 const mainEl = document.querySelector(".page__main-content");
 const aboutSection = document.querySelector("#about");
 const notFoundSection = document.querySelector("#not-found");
 const carouselSection = document.querySelector("#carousel");
+const deckViewSection = document.querySelector("#deck-view");
+const homeDecksList = document.querySelector("#home .gallery__list");
+let currentDeck = null;
+
+const handleHomeDecksListClick = (e) => {
+  if (e.target.closest(".card__btn_type_delete")) {
+    const li = e.target.closest("li");
+    if (li) li.remove();
+  }
+};
+
+if (homeDecksList) {
+  homeDecksList.addEventListener("click", handleHomeDecksListClick);
+}
 
 function renderDecksView() {
+  currentDeck = "home";
   homeSection.style.display = "block";
   aboutSection.style.display = "none";
   notFoundSection.style.display = "none";
   carouselSection.style.display = "none";
+  if (deckViewSection) deckViewSection.style.display = "none";
 
   mainEl.classList.remove("page__main-content_location_carousel");
 
-  const decksList = document.querySelector(".gallery__list");
+  const decksList = homeDecksList;
   decksList.innerHTML = "";
 
   function createDeckEl(item){
@@ -31,7 +48,7 @@ function renderDecksView() {
     const countEl = cloneEl.querySelector(".card__count");
     countEl.textContent = item.cards.length + " cards";
     const deckLinkEl = cloneEl.querySelector(".card__link");
-    deckLinkEl.href = `#carousel/${item.id}`;
+    deckLinkEl.href = `#deck/${item.id}`;
     return cloneEl;
   }
 
@@ -43,13 +60,6 @@ function renderDecksView() {
   decks.forEach(deck => {
     renderDeckEl(deck);
   });
-
-  decksList.addEventListener("click", (e) => {
-    if (e.target.closest(".card__delete-btn")) {
-      const li = e.target.closest("li");
-      li.remove();
-    }
-  });
 }
 
 function renderNotFoundView() {
@@ -57,6 +67,7 @@ function renderNotFoundView() {
   aboutSection.style.display = "none";
   notFoundSection.style.display = "flex";
   carouselSection.style.display = "none";
+  if (deckViewSection) deckViewSection.style.display = "none";
   mainEl.classList.remove("page__main-content_location_carousel");
 }
 function renderAboutView() {
@@ -64,10 +75,12 @@ function renderAboutView() {
   homeSection.style.display = "none";
   notFoundSection.style.display = "none";
   carouselSection.style.display = "none";
+  if (deckViewSection) deckViewSection.style.display = "none";
   mainEl.classList.remove("page__main-content_location_carousel");
 }
 
 function renderCarouselViewById(deckId) {
+  currentDeck = deckId;
   const deck = getDeckByID(deckId);
   mainEl.classList.add("page__main-content_location_carousel");
   if (deck) {
@@ -75,6 +88,7 @@ function renderCarouselViewById(deckId) {
     homeSection.style.display = "none";
     aboutSection.style.display = "none";
     notFoundSection.style.display = "none";
+    if (deckViewSection) deckViewSection.style.display = "none";
     renderCarouselView(deck);
   } else {
     renderNotFoundView();
@@ -87,6 +101,9 @@ function router() {
     renderDecksView();
   } else if (hash === "about") {
     renderAboutView();
+  } else if (hash.startsWith("deck/")) {
+    const deckId = hash.slice("deck/".length);
+    renderDeckViewById(deckId);
   } else if (hash.startsWith("carousel/")) {
     const deckId = hash.slice("carousel/".length);
     renderCarouselViewById(deckId);

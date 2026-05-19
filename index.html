@@ -42,7 +42,7 @@
             <div class="card__row">
               <p class="card__count"></p>
               <button
-                class="card__delete-btn"
+                class="card__btn card__btn_type_delete"
                 aria-label="Delete this deck"
                 type="button"
               >
@@ -55,6 +55,43 @@
           <ul class="gallery__list wrapping-row__display-contents">
           </ul>
           <button class="gallery__new-card-btn" type="button">+ New Deck</button>
+        </div>
+      </section>
+      <!-- Existing home section -->
+       <section id="deck-view" class="gallery" style="display: none;">
+        <h2 class="gallery__title">
+          <span class="gallery__title-text"></span>
+          <div class="gallery__practice-btn">
+            <a class="gallery__practice-link" href="#">Practice</a>
+          </div>
+        </h2>
+        <!-- Deck view template for individual cards -->
+        <template id="flashcard-template">
+          <li class="card">
+            <h3 class="card__title"></h3>
+            <p class="card__answer" hidden></p>
+            <div class="card__row">
+              <button
+                type="button"
+                aria-label="Flip card"
+                class="card__btn card__btn_type_flip"
+              >
+                <img src="./assets/images/flip.svg" alt="Flip card" />
+              </button>
+              <button
+                type="button"
+                aria-label="Delete card"
+                class="card__btn card__btn_type_delete"
+              >
+                <img src="./assets/images/delete.svg" alt="Delete card" />
+              </button>
+            </div>
+          </li>
+        </template>
+        <div class="wrapping-row">
+          <ul class="gallery__list wrapping-row__display-contents">
+          </ul>
+          <button class="gallery__new-card-btn" type="button">+ New Card</button>
         </div>
       </section>
       <section class="carousel" id="carousel">

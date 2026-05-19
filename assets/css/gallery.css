@@ -7,6 +7,9 @@
   line-height: 1;
   font-weight: 700;
   font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .gallery__list {
   list-style: none;
@@ -31,4 +34,20 @@
 .gallery__new-card-btn:hover {
   background-color: #c5c5c5;
   color: #1a1a1a;
+}
+
+/* Practice button (top-right) */
+.gallery__practice-link {
+  display: inline-block;
+  background-color: #111111;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+}
+.gallery__practice-link:hover {
+  opacity: 0.95;
 }
